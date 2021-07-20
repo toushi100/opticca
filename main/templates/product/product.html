@@ -1,0 +1,157 @@
+{% load static %}
+{% if user.is_authenticated%}
+{% include 'nav/header.html'%}
+
+{%else%}
+{% include 'pages/header.html'%}
+{% endif%}
+{% for pro in product%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-8">
+            <p>
+                <h3>
+                    {{ pro.name }}
+                </h3>
+                <hr class="solid">
+                <div class="row">
+                    {% if images%}
+
+
+
+                    <div id="carouselExampleControls" class="carousel slide mx-auto" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for img in images%}
+                             {% if forloop.first %}
+                                  <div class="carousel-item active">
+                        {%else%}
+                            <div class="carousel-item ">
+                                {% endif %}
+                                <img src="{{ img.image_base64 }}" class="d-block w-100" alt="">
+                            </div>
+                            
+                            {%endfor%}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    {%else%}
+                    <div class="mx-auto"><img src="{% static 'img/No-image-available.png' %}"></div>
+                    {% endif%}
+                </div>
+                <br />
+                Reference: {{pro.reference}}
+            </p>
+            <hr class="solid">
+            <p>
+                {{pro.description}}
+            </p>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 pt-3 pb-3">
+            <h3>
+                Annonceur:
+            </h3>
+            <p>
+                {{ pro.owner.username}}
+            </p>
+            <p>
+                Rating : 4.5/5
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>
+                Contact info:
+            </h3>
+            <hr class="solid">
+            <div class="row btn btn-primary mt-3">
+
+                Tel: {{ pro.owner.Tel}}
+            </div>
+            <br/>
+            <div class="row btn btn-primary mt-3">
+
+                email: {{ pro.owner.email}}
+            </div>
+
+
+            <!--
+            <form method="post" action="{% url 'add_cart' reference=pro.reference%}" >
+            {% csrf_token %}
+                <div class="form-group">
+                    
+                            <input type="button" id="sm" value="&lt;">
+                <input type="text"id="qtt"  name="qtt" style="width:50px;" value="1" maxlength="3" >
+                <input type="button" id="bg" value="&gt;">
+                    
+                    
+
+
+                </div>
+                <div class="form-group">
+                    {% if user.is_authenticated%}
+<button type="submit" class="btn btn-dark btn-lg">
+                    Add to Cart
+                </button>
+
+{%else%}
+                    <a href="{%url 'login'%}" class="btn btn-dark btn-lg">
+                        Add to Cart
+                    </a>
+{% endif%}
+
+                </div>
+            </form>-->
+        </div>
+    </div>
+
+
+</div>
+{%endfor%}
+<script>
+    /*
+$(document).ready(function () {
+    $('#sm').on('click',function(e){
+    var a =$('#qtt').val();
+    if (a <= 1)
+    a = 1;
+    else
+    a--;
+    $('#qtt').val(a)
+    });
+    $('#bg').on('click',function(e){
+    var a =$('#qtt').val();
+    if (a>=999)
+    a= 999;
+    else
+    a++;
+    $('#qtt').val(a)
+    });
+
+   $('#qtt').on('keypress', function(e){
+  return e.metaKey || // cmd/ctrl
+    e.which <= 0 || // arrow keys
+    e.which == 8 || // delete key
+    /[0-9]/.test(String.fromCharCode(e.which)); // numbers
+});
+
+})
+*/
+</script>
+
+{% if user.is_authenticated%}
+{% include 'nav/footer.html'%}
+
+{%else%}
+{% include 'pages/footer.html'%}
+{% endif%}

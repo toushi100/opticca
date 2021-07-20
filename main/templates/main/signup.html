@@ -1,0 +1,137 @@
+{% include 'login/header.html'%}
+{% load static %}
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<div class="container-fluid h-75 mh-100">
+    <div class="row">
+        <script>
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+        return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+
+
+
+
+
+
+
+        </script>
+
+
+        <form class="px-5 py-3 mx-auto" method="post">
+              <script>
+              $(document).ready(function(){
+
+                 $('#username').on('change',function () {
+      var username = $(this).val();
+
+      $.ajax({
+        url: '{% url "validate-user" %}',
+        data: {
+          'username': username
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken == true) {
+            alert(" un utilisateur déjà enregistré ");
+          }
+        }
+      });
+
+    });
+                 $('#mail').on('change',function () {
+      var mail = $(this).val();
+
+      $.ajax({
+        url: '{% url "validate-mail" %}',
+        data: {
+          'mail': mail
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken == true) {
+            alert("le compte associé  à cet email existe déja");
+          }
+        }
+      });
+
+    });
+
+
+
+
+});
+</script>
+            {% csrf_token %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li
+                        %} %} class="{{ message.tags }} alert alert-danger" endif ifmessage.tags {% {%>{{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Nom d'utilisateur</label>
+                        <input class="form-control" name="username" id="username" placeholder="Nom d'utilisateur" type="text">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Email </label>
+                        <input class="form-control" name="mail" id="mail" placeholder="email@example.com" type="email">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Password</label>
+                <input class="form-control" name="pass" placeholder="Password" type="password">
+            </div>
+
+            <button class="btn btn-primary mt-3 btn-block disabled" type="submit" disabled>Créer un compte</button>
+
+        </form>
+        <div class="dropdown-divider"></div>
+
+
+    </div>
+</div>
+
+{% include 'pages/footer.html'%}

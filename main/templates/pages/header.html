@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>
+        Opticca
+    </title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand " href="{%url 'index' %}" style="font-size:35px;font-weight:bold;">Opticca</a>
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+             <li>
+                <a class="nav-link btn btn-success text-white" href="{%url 'add_product' %}"> Déposer une annonce
+                    <b style="font-size:22px">+</b> <span class="sr-only">(current)</span></a>
+
+            </li>
+        </ul>
+        <a href="{%url 'login' %}">
+            <button class="btn btn-primary ml-auto btn-block" type="button"><img  height="35px" width="45px" src="{% static 'img/sign.png' %}"/>Se connecter</button>
+        </a>
+    </div>
+</nav>

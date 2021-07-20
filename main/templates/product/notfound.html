@@ -1,0 +1,18 @@
+{% if user.is_authenticated%}
+{% include 'nav/header.html'%}
+
+{%else%}
+{% include 'pages/header.html'%}
+{% endif%}
+<div class="container">
+    <h2>
+        Product not found. Something went wrong.
+    </h2>
+</div>
+
+{% if user.is_authenticated%}
+{% include 'nav/footer.html'%}
+
+{%else%}
+{% include 'pages/footer.html'%}
+{% endif%}

@@ -1,0 +1,39 @@
+{% include 'pages/header.html'%}
+{% load static %}
+<style>
+    .bg{
+    background-image: url("{% static "img/wallpaper.jpg" %}");
+    height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+    }
+
+
+
+
+</style>
+<div class="bg">
+    <div class="container-fluid">
+        <div class="row pt-5 ">
+
+            <div class="col mx-auto ">
+
+                <h2>About : </h2>
+
+                <div class="col" >
+                     About this site: <br/>
+                    this is About this page.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+{% include 'pages/footer.html'%}

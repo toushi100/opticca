@@ -1,0 +1,92 @@
+{
+  "category": [
+    {
+      "id": 0,
+      "name": "Lunettes"
+    },
+    {
+      "id": 1,
+      "name": "Verre Ophtalmiques"
+    },
+    {
+      "id": 2,
+      "name": "Meuleuse"
+    },
+    {
+      "id": 3,
+      "name": "Raineuse"
+    },
+    {
+      "id": 4,
+      "name": "Frontofocométre"
+    },
+    {
+      "id": 5,
+      "name": "Boite d’essai"
+    },
+    {
+      "id": 6,
+      "name": "Lampe à fente"
+    },
+    {
+      "id": 7,
+      "name": "Projector de tests"
+    },
+    {
+      "id": 8,
+      "name": "Pastlles"
+    },
+    {
+      "id": 9,
+      "name": "Plaquettes"
+    },
+    {
+      "id": 10,
+      "name": "Prismes Press’on"
+    },
+    {
+      "id": 11,
+      "name": "Pinces"
+    },
+    {
+      "id": 12,
+      "name": "Meule à main"
+    },
+    {
+      "id": 13,
+      "name": "Auto-réfractomettre"
+    },
+    {
+      "id": 14,
+      "name": "bacs à ultrasons "
+    },
+    {
+      "id": 15,
+      "name": "pupillomètres"
+    },
+    {
+      "id": 16,
+      "name": "raineuses "
+    },
+    {
+      "id": 17,
+      "name": "perçeuses "
+    },
+    {
+      "id": 18,
+      "name": "tourets à polir"
+    },
+    {
+      "id": 19,
+      "name": "petits outillages"
+    },
+    {
+      "id": 20,
+      "name": "péniches"
+    },
+    {
+      "id": 21,
+      "name": "pièces détachées"
+    }
+  ]
+}
