@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.core.serializers import serialize
+from .forms import UserResgisterForm
 
 from main.models import *
 
@@ -17,7 +18,7 @@ logger = logging.getLogger("mylogger")
 
 # Create your views here.
 
-
+@login_required
 def index(request):
     return render(request, 'main/index.html')
 
@@ -41,20 +42,27 @@ def about(request):
 
 def signup(request):
     if request.method == 'GET':
-        data = {}
-        data['Page'] = 'Inscription'
+        form = UserResgisterForm(request.POST)
+        data = {'form':form}
+        
         return render(request, 'main/signup.html', data)
     elif request.method == "POST":
-        data = request.POST.copy()
-        firstname = data.get('firstname')
-        lastname = data.get('lastname')
-        username = data.get('username')
-        mail = data.get('mail')
-        pwd = data.get('pass')
-        user = Person.objects.create_user(username, mail, pwd)
-        user.first_name = firstname
-        user.last_name = lastname
-        user.save()
+        # data = request.POST.copy()
+        # firstname = data.get('firstname')
+        # lastname = data.get('lastname')
+        # username = data.get('username')
+        # mail = data.get('mail')
+        # pwd = data.get('pass')
+        # user = Person.objects.create_user(username, mail, pwd)
+        # user.first_name = firstname
+        # user.last_name = lastname
+        # user.save()
+        form = UserResgisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
+            return redirect('/')
         return redirect('/login/')
         pass
     pass
@@ -82,12 +90,12 @@ def signin(request):
                 logged = True
 
         except Person.DoesNotExist:
-            messages.info(request, 'Votre adresse E-mail/ Mot de passe sont incorrects ')
+            messages.info(request, 'Votre adresse E-mail/ Mot de passe sont incorrects')
             return render(request, 'main/login.html')
 
         logger.info("Debug : " + str(mail) + "\n" + str(pwd) + "\n" + str(logged))
         if not logged:
-            messages.info(request, 'Votre adresse E-mail/ Mot de passe sont incorrects ')
+            messages.info(request, 'Votre adresse E-mail/ Mot de passe sont incorrects')
             logger.info("Logged Not")
             return redirect('/login/')
         else:

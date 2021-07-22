@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -80,11 +81,11 @@ WSGI_APPLICATION = 'Opticca.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'OpticalDB',
+        'NAME': 'OpticaDB',
         'USER': 'admin',
-        'PASSWORD': 'hello',
+        'PASSWORD': 'opticcaDBpass',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
@@ -125,6 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 STATIC_URL = '/static/'
 
 #channel setting
@@ -134,3 +140,4 @@ ASGI_APPLICATION = "Opticca.routing.application"
 MEDIA_URL = '/img/'
 
 LOGIN_URL = '/login/'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'

@@ -46,49 +46,6 @@
 
 
         <form class="px-5 py-3 mx-auto" method="post">
-              <script>
-              $(document).ready(function(){
-
-                 $('#username').on('change',function () {
-      var username = $(this).val();
-
-      $.ajax({
-        url: '{% url "validate-user" %}',
-        data: {
-          'username': username
-        },
-        dataType: 'json',
-        success: function (data) {
-          if (data.is_taken == true) {
-            alert(" un utilisateur déjà enregistré ");
-          }
-        }
-      });
-
-    });
-                 $('#mail').on('change',function () {
-      var mail = $(this).val();
-
-      $.ajax({
-        url: '{% url "validate-mail" %}',
-        data: {
-          'mail': mail
-        },
-        dataType: 'json',
-        success: function (data) {
-          if (data.is_taken == true) {
-            alert("le compte associé  à cet email existe déja");
-          }
-        }
-      });
-
-    });
-
-
-
-
-});
-</script>
             {% csrf_token %}
             {% if messages %}
             <ul class="messages">
@@ -100,32 +57,10 @@
             </ul>
             {% endif %}
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label>Nom d'utilisateur</label>
-                        <input class="form-control" name="username" id="username" placeholder="Nom d'utilisateur" type="text">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label>Email </label>
-                        <input class="form-control" name="mail" id="mail" placeholder="email@example.com" type="email">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
+           {{form.as_ul}}
+          
 
-
-            <div class="form-group">
-                <label>Password</label>
-                <input class="form-control" name="pass" placeholder="Password" type="password">
-            </div>
-
-            <button class="btn btn-primary mt-3 btn-block disabled" type="submit" disabled>Créer un compte</button>
+            <button class="btn btn-primary mt-3 btn-block disabled" type="submit" >Créer un compte</button>
 
         </form>
         <div class="dropdown-divider"></div>
