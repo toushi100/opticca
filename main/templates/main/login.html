@@ -48,40 +48,21 @@
     </script> {% endcomment %}
     <form class="px-4 py-3 mx-auto" method="post">
       {% csrf_token %}
-      <ul id="message" class="messages alert alert-danger d-none">
+      {% comment %} <ul id="message" class="messages alert alert-danger d-none">
         {% if messages %}
-        {% comment %} <script>
+        <script>
           var mes = document.getElementById("message");
           mes.classList.remove("d-none");
-        </script> {% endcomment %}
+        </script> 
         {% for message in messages %}
         <li %} %} class="{{ message.tags }} " endif if message.tags {% {%>
           {{ message }}
         </li>
         {% endfor %} 
         {% endif %}
-      </ul>
-      <div class="form-group">
-        <label>E-mail</label>
-        <input
-          class="form-control"
-          name="mail"
-          id="mail"
-          placeholder="email@example.com"
-          required
-          type="email"
-        />
-      </div>
-      <div class="form-group">
-        <label>Mot de Passe</label>
-        <input
-          class="form-control"
-          name="pass"
-          placeholder="Mot de Passe"
-          required
-          type="password"
-        />
-      </div>
+      </ul> {% endcomment %}
+      
+        {{ form }}
       <a class="dropdown-item" href="#">Mot de passe oublié</a>
       <button
         class="btn btn-primary mt-3 btn-block"

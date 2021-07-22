@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import mimetypes
+import environ
+env = environ.Env()
+environ.Env.read_env()
 mimetypes.add_type("text/css", ".css", True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,13 +84,14 @@ WSGI_APPLICATION = 'Opticca.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'OpticaDB',
-        'USER': 'admin',
-        'PASSWORD': 'opticcaDBpass',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME':env('DATABASE_NAME'),
+        'USER':env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
+
 
 
 # Password validation
@@ -140,4 +144,5 @@ ASGI_APPLICATION = "Opticca.routing.application"
 MEDIA_URL = '/img/'
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
