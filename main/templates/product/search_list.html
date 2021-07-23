@@ -5,72 +5,40 @@
 {%else%}
 {% include 'pages/header.html'%}
 {% endif%}
-<div class="container-fluid ">
-<style>
-    .img{
-    max-height:100%;
-    max-width:100%;
-    display:block:
-    }
-    .image_s{
-    height:200px;
-    }
-
-</style>
-
-    <div class="container ">
-
+<div class="py-5">
+    <div class="container">
+      <div class="row hidden-md-up">
         {% for product in product_list %}
-        <div class="row" id="list">
-            <div class="col-sm-12 col-md-4 mx-auto text-center">
+
+
+
+        <div class="col-md-4">
+            <div class="card">
                 {%if product.img == 'None'%}
-                <div class="image_s"><img class="flex mx-auto img"  src="{% static 'img/No-image-available.png' %}"></div>
-                {%else %}
-                <div class="image_s"><img class="flex mx-auto img"  src="{{ product.img.image_base64 }}"></div>
-                {% endif %}
+                        <img class="flex mx-auto img"  style="display: block;max-width: 100px;max-height:100px;"src="{% static 'img/noimage.png' %}">
+                    {%else %}
+                        <img class="flex mx-auto img" style="display: block;max-width: 100px;max-height:100px;"src="{{ product.img.image_base64 }}">
+                    {% endif %}
+              <div class="card-block">
+                <h4 class="card-title ml-2">{{product.name}}</h4>
+                <h6 class="card-subtitle text-muted ml-2">{{product.price}}</h6>
+                <p class="card-text ml-2">{{product.city.name|default_if_none:'Pas Sesi'}}</p>
+                <p class="card-text ml-2">{{product.category.name|default_if_none:'Pas Sesi'}}</p>
+                <a href="/product/{{product.reference}}" class="card-link btn btn-primary m-2">Go to Page</a>
+                
+              </div>
             </div>
-            <div class="col-sm-12 col-md-8 ">
-                <div class="card ">
-
-                    <h6 class="card-body">
-                        <a href="/product/{{product.reference}}/">
-                            <span><b>{{product.name}}</b></span>
-                        </a></h6>
-                    <div class="card-body">
-                        <span>{{product.price}}</span><br/>
-                        <span>{{product.category.name|default_if_none:'Pas Sesi'}}</span><br/>
-                        <span>{{product.city.name|default_if_none:'Pas Sesi'}}</span>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="text-dark ">
-
-            </div>
-
-
-        </div>
+          </div>
+    
+         
+             
         {%endfor%}
+      </div>
     </div>
 </div>
-<style>
-    #list{
 
-    }
+   
 
-
-
-
-
-
-
-
-</style>
 {% if user.is_authenticated%}
 {% include 'nav/footer.html'%}
 

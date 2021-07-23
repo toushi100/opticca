@@ -264,7 +264,7 @@
                 var input = document.createElement("input");
                 input.type = "file";
                 input.multiple = "multiple";
-                input.accept = "image/png, image/jpeg";
+                input.accept = "image/png, image/jpeg,image/jpg";
                 input.required = "required";
                 input.onchange = function () {
 
@@ -406,6 +406,7 @@
             }
             case 5: {
                 alert("Uploading");
+                console.log(AN_data)
                 $.ajax({
                     type: "POST",
                     url: "{% url "add_data" %}",
@@ -448,7 +449,6 @@
                         "type" + AN_data["type_TRA"] + "\n");*/
                     break;
                 }
-
             }
             if (step < 6) {
                 step++;
