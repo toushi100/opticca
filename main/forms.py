@@ -5,7 +5,7 @@ from .models import Person
 
 
 
-class UserResgisterForm(UserCreationForm):
+class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     Tel = forms.IntegerField()
     class Meta:
