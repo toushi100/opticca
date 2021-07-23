@@ -379,8 +379,7 @@ def product(request, reference):
 
 
 def addproduct(request):
-    # todo add product function done
-    # todo switch
+
     return render(request, 'main/add_product.html')
 
 
@@ -393,27 +392,24 @@ def checkout(request):
 
 def data_add_product(request):
     data = {}
-    try:
-
-        input = request.POST
-        pro = Product()
-        pro.category_id = int(input["category"])
-        pro.city_id = int(input["ville"])
-        pro.name = input["title"]
-        pro.owner = Person.objects.get(username=request.user)
-        pro.price = float(input["Prix"])
-        pro.TS = bool(int(input['type_TRA']))
-        pro.save()
-        i = input.keys()
-
-        for key in i:
-            if key.startwith("image"):
-                pr_img = Product_Image()
-                pr_img.reference = pro
-                pr_img.image_base64 = input[key]
-                pr_img.save()
-        data["added"] = True;
-    except:
-        data["added"] = False;
-
+    input = request.POST
+    pro = Product()
+    pro.category_id = int(input["category"])
+    pro.city_id = int(input["ville"])
+    pro.name = input["title"]
+    pro.owner = Person.objects.get(pk=request.user.id)
+    pro.price = float(input["Prix"])
+    pro.TS = bool(int(input['type_TRA']))
+    pro.save()
+    i = input.keys()
+    print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+    print(i)
+    for key in i:
+        if key == 'image0':
+            pr_img = Product_Image()
+            pr_img.reference = pro
+            pr_img.image_base64 = input[key]
+            pr_img.save()
+    data["added"] = True
+    print('done')
     return JsonResponse(data)

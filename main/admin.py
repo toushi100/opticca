@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Person
-from .models import Person,Address,ProductType,Product_Image,Order,Order_Line,Store,CartItem,Cart,Category,Region,City
+from .models import Person,Address,ProductType,Product_Image,Order,Order_Line,Store,CartItem,Cart,Category,Region,City,Product
 # Register your models here.
 admin.site.register(Person)
 admin.site.register(Address)
@@ -15,3 +15,4 @@ admin.site.register(Cart)
 admin.site.register(Region)
 admin.site.register(City)
 admin.site.register(Category)
+admin.site.register(Product)

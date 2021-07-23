@@ -406,6 +406,7 @@
             }
             case 5: {
                 alert("Uploading");
+                console.log(AN_data)
                 $.ajax({
                     type: "POST",
                     url: "{% url "add_data" %}",
@@ -448,7 +449,6 @@
                         "type" + AN_data["type_TRA"] + "\n");*/
                     break;
                 }
-
             }
             if (step < 6) {
                 step++;
