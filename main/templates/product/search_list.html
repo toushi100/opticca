@@ -21,23 +21,25 @@
     <div class="container ">
 
         {% for product in product_list %}
+        <div class="col-sm-12 ">
         <div class="row" id="list">
-            <div class="col-sm-12 col-md-4 mx-auto text-center">
-                {%if product.img == 'None'%}
-                <div class="image_s"><img class="flex mx-auto img"  src="{% static 'img/No-image-available.png' %}"></div>
-                {%else %}
-                <div class="image_s"><img class="flex mx-auto img"  src="{{ product.img.image_base64 }}"></div>
-                {% endif %}
-            </div>
-            <div class="col-sm-12 col-md-8 ">
+            
+            <div class="row">
+            <div class="col-sm-3">
                 <div class="card ">
-
+                    
+                    {%if product.img == 'None'%}
+                        <div class="image_s"><img class="flex mx-auto img"  src="{% static 'img/noimage.png' %}"></div>
+                    {%else %}
+                        <div class="image_s"><img class="flex mx-auto img"  src="{{ product.img.image_base64 }}"></div>
+                    {% endif %}
+                    
                     <h6 class="card-body">
                         <a href="/product/{{product.reference}}/">
                             <span><b>{{product.name}}</b></span>
                         </a></h6>
                     <div class="card-body">
-                        <span>{{product.price}}</span><br/>
+                        <span>{{product.price}} </span><br/>
                         <span>{{product.category.name|default_if_none:'Pas Sesi'}}</span><br/>
                         <span>{{product.city.name|default_if_none:'Pas Sesi'}}</span>
 

@@ -146,3 +146,4 @@ MEDIA_URL = '/img/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880

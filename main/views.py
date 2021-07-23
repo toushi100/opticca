@@ -5,8 +5,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.serializers import serialize
 from .forms import UserResgisterForm
@@ -257,14 +258,12 @@ def product_list(request):
     if request.method == "GET":
         data = request.GET.copy()
         text_search = data.get("search")
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
+        "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(text_search)
         page_num = data.get("page")
         if page_num is None:
             page_num = 1
-        if len(text_search) < 3:
-            if request.user.is_authenticated:
-                return redirect("/")
-            else:
-                return redirect('/')
         type = data.get("type")
         location = data
         data_ = {}
@@ -298,11 +297,12 @@ def product_list(request):
 
         context = {
             "product_list": product_list,
-            "pages": pages_handler,
+            
 
         }
         return render(request, "product/search_list.html", context)
-    pass
+
+
 def get_img(product_list,img_list):
     return None
 
@@ -402,8 +402,6 @@ def data_add_product(request):
     pro.TS = bool(int(input['type_TRA']))
     pro.save()
     i = input.keys()
-    print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-    print(i)
     for key in i:
         if key == 'image0':
             pr_img = Product_Image()
@@ -411,5 +409,5 @@ def data_add_product(request):
             pr_img.image_base64 = input[key]
             pr_img.save()
     data["added"] = True
-    print('done')
-    return JsonResponse(data)
+    
+    return redirect("/")
