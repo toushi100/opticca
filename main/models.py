@@ -1,11 +1,13 @@
 import string
 import random
-from enum import Enum
+import logging
+from enum import Enum, unique
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-import logging
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 logger = logging.getLogger("mylogger")
 
@@ -25,7 +27,7 @@ class Person(User):
     DoesNotExist = None
     is_customer = models.BooleanField(default=False)
     is_supplier = models.BooleanField(default=False)
-    Tel = models.CharField(max_length=20,null=True)
+    Tel = PhoneNumberField('phone number', null=True, blank=True, unique=True)
 
     default_shipping_address = models.ForeignKey("Address", null=True, blank=True, default=None,
                                                  verbose_name="Default shipping address",

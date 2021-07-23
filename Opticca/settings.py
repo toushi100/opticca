@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'channels',
     'chat',
     'django_extensions',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
