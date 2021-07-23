@@ -141,3 +141,5 @@ cython_debug/
 *.png
 *.jpg
 .DS_Store
+
+migrations/
