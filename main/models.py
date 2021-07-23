@@ -6,6 +6,7 @@ from enum import Enum, unique
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.utils.translation import gettext as _
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -25,16 +26,16 @@ last_name
 
 class Person(User):
     DoesNotExist = None
-    is_customer = models.BooleanField(default=False)
-    is_supplier = models.BooleanField(default=False)
-    Tel = PhoneNumberField('phone number', null=True, blank=True, unique=True)
+    is_customer = models.BooleanField(_('customer ?'), default=False)
+    is_supplier = models.BooleanField(_('supplier ?'), default=False)
+    Tel = PhoneNumberField(_('phone number'), null=True, blank=True, unique=True)
 
     default_shipping_address = models.ForeignKey("Address", null=True, blank=True, default=None,
-                                                 verbose_name="Default shipping address",
+                                                 verbose_name=_("Default shipping address"),
                                                  related_name="default_shipping_address", on_delete=models.PROTECT)
 
     default_invoicing_address = models.ForeignKey("Address", null=True, blank=True, default=None,
-                                                  verbose_name="Default invoice address",
+                                                  verbose_name=_("Default invoice address"),
                                                   related_name="default_invoicing_address", on_delete=models.PROTECT)
 
     '''
