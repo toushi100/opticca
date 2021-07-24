@@ -410,4 +410,4 @@ def data_add_product(request):
             pr_img.save()
     data["added"] = True
     
-    return redirect("/")
+    return redirect('index')

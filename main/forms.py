@@ -8,6 +8,8 @@ from .models import Person
 class UserResgisterForm(UserCreationForm):
     email = forms.EmailField()
     Tel = forms.IntegerField()
+    password1 = forms.PasswordInput()
+    password2=forms.PasswordInput()
     class Meta:
         model = Person
         fields = ['first_name', 'last_name', 'username',

@@ -12,6 +12,16 @@
             crossorigin="anonymous"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <style>
+  .bg {
+    background-image: url("{% static "img/wallpaper.jpg" %}");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,7 +41,7 @@
             </li>
         </ul>
         <a href="{%url 'login' %}">
-            <button class="btn btn-primary ml-auto btn-block" type="button"><img  height="35px" width="45px" src="{% static 'img/sign.png' %}"/>Se connecter</button>
+            <button class="btn btn-primary p-1 btn-block" type="button">Se connecter<img  class="ml-2"height="35px" width="45px" src="{% static 'img/login.ico' %}"/></button>
         </a>
     </div>
 </nav>

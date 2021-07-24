@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'channels',
     'chat',
     'django_extensions',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
