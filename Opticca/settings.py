@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'chat',
     'django_extensions',
     'phonenumber_field',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [

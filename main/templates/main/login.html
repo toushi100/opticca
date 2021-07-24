@@ -1,97 +1,105 @@
-{% if request.user.is_authenticated %} 
-    {% include 'nav/header.html'%} {% else %}
-    {% include 'pages/header.html'%} 
-{% endif %} 
-{% load static %}
-<style>
-  .bg {
-    background-image: url("{% static "img/wallpaper.jpg" %}");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-</style>
-<div class="container-fluid h-75 mh-100 bg">
+{% if request.user.is_authenticated %} {% include 'nav/header.html'%} {% else %}
+{% include 'pages/header.html'%} {% endif %} {% load static %} 
+{% load crispy_forms_tags %}
+<style> .textinput,.numberinput,.emailinput{
+  width: 100%;
+}</style>
+<div class="bg">
+<div class="container ">
   <div class="row">
-    {% comment %} <script>
-      function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie != "") {
-          var cookies = document.cookie.split(";");
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == name + "=") {
-              cookieValue = decodeURIComponent(
-                cookie.substring(name.length + 1)
-              );
-              break;
-            }
-          }
-        }
-        return cookieValue;
-      }
-      var csrftoken = getCookie("csrftoken");
-
-      function csrfSafeMethod(method) {
-        // these HTTP methods do not require CSRF protection
-        return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
-      }
-      $.ajaxSetup({
-        beforeSend: function (xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        },
-      });
-    </script> {% endcomment %}
-    <form class="px-4 py-3 mx-auto" method="post">
-      {% csrf_token %}
-      {% comment %} <ul id="message" class="messages alert alert-danger d-none">
-        {% if messages %}
-        <script>
-          var mes = document.getElementById("message");
-          mes.classList.remove("d-none");
-        </script> 
-        {% for message in messages %}
-        <li %} %} class="{{ message.tags }} " endif if message.tags {% {%>
-          {{ message }}
-        </li>
-        {% endfor %} 
-        {% endif %}
-      </ul> {% endcomment %}
-      
-        {{ form }}
-      <a class="dropdown-item" href="#">Mot de passe oublié</a>
-      <button
-        class="btn btn-primary mt-3 btn-block"
-        onclick="checkmail()"
-        type="submit">
-        Se Connecter
-      </button>
-      {% comment %} <script>
-                        function checkMail(email) {
-                            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                            if (filter.test(email)) {
-                                return true;
-                            }
-                            return false;
-                        }
-                        function checkmail() {
-                            var email = document.getElementById("mail");
-                            if (checkMail(email) == false)
-
-        }
-      </script> {% endcomment %}
-      <div class="mt-3">
-        <a class="dropdown-item" href="{% url 'signup' %}"
-          >Envie de nous rejoindre ?
-          <span class="text-primary">Créer un compte</span></a
-        >
+    <div class="text-muted col-lg-8 mx-auto">
+      <div class="container text-center">
+        <div class="content-section pt-lg-5">
+          <form class="col" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group text-left py-2">
+              {{form|crispy}}
+            </fieldset>
+            <div class="form-group">
+              <button
+                class="btn btn-primary btn-block"
+                onclick="checkmail()"
+                type="submit"
+              >
+                Se Connecter
+              </button>
+              <small class="text-muted text-center ml-2">
+                <a class="ml-2" href="#">Mot de passe oublié</a></small
+              >
+            </div>
+          </form>
+          <div class="border-top pt-3">
+            <small class="text-muted"
+              >Envie de nous rejoindre ?
+              <a class="ml-2" href="{% url 'signup' %}"
+                >Créer un compte</a
+              ></small
+            >
+          </div>
+        </div>
       </div>
-    </form>
-    <div class="dropdown-divider"></div>
+    </div>
   </div>
+
+  {% comment %}
+  <ul id="message" class="messages alert alert-danger d-none">
+    {% if messages %}
+    <script>
+      var mes = document.getElementById("message");
+      mes.classList.remove("d-none");
+    </script>
+    {% for message in messages %}
+    <li %} %} class="{{ message.tags }} " endif if message.tags {% {%>
+      {{ message }}
+    </li>
+    {% endfor %} {% endif %}
+  </ul>
+  {% endcomment %} {% comment %}
+  <script>
+    function checkMail(email) {
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (filter.test(email)) {
+            return true;
+        }
+        return false;
+    }
+    function checkmail() {
+        var email = document.getElementById("mail");
+        if (checkMail(email) == false)
+
+      }
+  </script>
+  {% endcomment %} {% comment %}
+  <script>
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie != "") {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) == name + "=") {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getCookie("csrftoken");
+
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+    }
+    $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      },
+    });
+  </script>
+  {% endcomment %} {% comment %} {% include 'pages/footer.html'%} {% endcomment%}
 </div>
-{% include 'pages/footer.html'%}
+</div>
