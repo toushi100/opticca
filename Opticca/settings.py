@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import mimetypes
 import environ
+
 env = environ.Env()
 environ.Env.read_env()
+
 mimetypes.add_type("text/css", ".css", True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'channels',
     'chat',
     'django_extensions',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

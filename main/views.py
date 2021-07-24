@@ -6,11 +6,12 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import JsonResponse,HttpResponseRedirect
+from django.http.response import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.serializers import serialize
-from .forms import UserResgisterForm
+from .forms import UserRegisterForm
 
 from main.models import *
 
@@ -43,10 +44,9 @@ def about(request):
 
 def signup(request):
     if request.method == 'GET':
-        form = UserResgisterForm(request.POST)
-        data = {'form':form}
-        
-        return render(request, 'main/signup.html', data)
+        form = UserRegisterForm()
+        context = {'form':form}
+        return render(request, 'main/signup.html', context)
     elif request.method == "POST":
         # data = request.POST.copy()
         # firstname = data.get('firstname')
@@ -58,15 +58,14 @@ def signup(request):
         # user.first_name = firstname
         # user.last_name = lastname
         # user.save()
-        form = UserResgisterForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
             return redirect('/')
-        return redirect('/login/')
-        pass
-    pass
+        return render(request, 'main/signup.html', {'form': form})
+    return Http404("We don't support this http verb")
 
 
 def signin(request):
