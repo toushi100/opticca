@@ -1,72 +1,101 @@
-{% include 'login/header.html'%}
-{% load static %}
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+{% include 'login/header.html'%} {% load static %} {% load crispy_forms_tags %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
-<div class="container-fluid h-75 mh-100">
+  <style>
+    #hint_id_username, #hint_id_password1 ,ul,.help-block{
+        display: none;
+    }
+    .textinput,.numberinput,.emailinput{
+      width: 100%;
+    }
+    
+</style>
+<div class="bg">
+  <div class="container">
     <div class="row">
-        <script>
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-        return cookieValue;
-        }
-        var csrftoken = getCookie('csrftoken');
-        function csrfSafeMethod(method) {
-            // these HTTP methods do not require CSRF protection
-            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-        $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        }
-    });
+      <div class="col-lg-8 mx-auto">
 
+      <form class="px-5 py-3 text-muted mx-auto" method="post">
+        {% csrf_token %} {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li %} %} class="{{ message.tags }} alert alert-danger" endif ifmessage.tags {% {%>
+            {{ message }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
 
+        <fieldset class="form-group text-left">
+          <div class="form-row">
+            <div class="form-group w-100  col-md-6 mb-0">
+              {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ form.last_name|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+              {{ form.Tel|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ form.username|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+              {{ form.email|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 mb-0">
+              {{ form.password1|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+              {{ form.password2|as_crispy_field }}
+            </div>
+          </div>
+        </fieldset>
 
-
-
-
-
-
-        </script>
-
-
-        <form class="px-5 py-3 mx-auto" method="post">
-            {% csrf_token %}
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li
-                        %} %} class="{{ message.tags }} alert alert-danger" endif ifmessage.tags {% {%>{{ message }}
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-
-           {{form.as_ul}}
-          
-
-            <button class="btn btn-primary mt-3 btn-block disabled" type="submit" >Créer un compte</button>
-
-        </form>
-        <div class="dropdown-divider"></div>
-
-
+        <button class="btn btn-primary mt-3 btn-block " type="submit">
+          Créer un compte
+        </button>
+      </form>
+      <div class="dropdown-divider"></div>
     </div>
+  </div>
+</div>
 </div>
 
+<script>
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = jQuery.trim(cookies[i]);
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) == name + "=") {
+          cookieValue = decodeURIComponent(
+            cookie.substring(name.length + 1)
+          );
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  var csrftoken = getCookie("csrftoken");
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+  }
+  $.ajaxSetup({
+    beforeSend: function (xhr, settings) {
+      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      }
+    },
+  });
+</script>
 {% include 'pages/footer.html'%}
