@@ -22,6 +22,11 @@
   * exit
 - In the .env file edit the values to match you database settings
 - In the main project folder run:
-  * python manage.py runserver
+    
+    * python manage.py makemigrations
+    
+    * python manage.py migrate
+    
+    * python manage.py runserver
   
    
