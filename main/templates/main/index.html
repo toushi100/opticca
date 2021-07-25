@@ -1,4 +1,6 @@
-{% include 'pages/header.html'%}
+{% if request.user.is_authenticated %} 
+{% include 'nav/header.html'%} {% else %}
+{% include 'pages/header.html'%} {% endif %}
 {% load static %}
 
 <div class="bg">
