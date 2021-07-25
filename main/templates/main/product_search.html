@@ -1,33 +1,25 @@
-{% if request.user.is_authenticated %}
-{% include 'nav/header.html'%}
-{% else %}
-{% include 'pages/header.html'%}
-{% endif %}
+{% if request.user.is_authenticated %} {% include 'nav/header.html'%} {% else %}
+{% include 'pages/header.html'%} {% endif %}
 <div class="container">
-    {%
-    for product in product_list
-    %}
-    <div class="row">
-
-        <div class="col">
-            <div class="card">
- <div class="card-header"><h4 class="card-title">{% product.name%}</h4></div>
-
-                <div class="card-body bg-dark">
-                    
-                    <p class="card-text">{% product.description%}
-                        <br/>
-                        {% product.price %}
-                    </p>
-                    <a class="btn btn-primary" href="product/{%product.id%}"></a>
-                </div>
-            </div>
+  {% for product in product_list %}
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{% product.name%}</h4>
         </div>
 
-
+        <div class="card-body bg-dark">
+          <p class="card-text">
+            {% product.description%}
+            <br />
+            {% product.price %}
+          </p>
+          <a class="btn btn-primary" href="product/{%product.id%}"></a>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>
-
 
 {% include 'pages/footer.html'%}

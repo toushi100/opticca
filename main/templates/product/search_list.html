@@ -13,21 +13,20 @@
 
 
         <div class="col-md-4">
-            <div class="card">
-                {%if product.img == 'None'%}
-                        <img class="flex mx-auto img"  style="display: block;max-width: 100px;max-height:100px;"src="{% static 'img/noimage.png' %}">
+          <div class="card" style="width: 18rem;">
+            {%if product.img == 'None'%}
+                        <img class="card-img-top" src="{% static 'img/noimage.png' %}">
                     {%else %}
-                        <img class="flex mx-auto img" style="display: block;max-width: 100px;max-height:100px;"src="{{ product.img.image_base64 }}">
+                        <img class="card-img-top" src="{{ product.img.image_base64 }}">
                     {% endif %}
-              <div class="card-block">
-                <h4 class="card-title ml-2">{{product.name}}</h4>
-                <h6 class="card-subtitle text-muted ml-2">{{product.price}}</h6>
-                <p class="card-text ml-2">{{product.city.name|default_if_none:'Pas Sesi'}}</p>
-                <p class="card-text ml-2">{{product.category.name|default_if_none:'Pas Sesi'}}</p>
-                <a href="/product/{{product.reference}}" class="card-link btn btn-primary m-2">Go to Page</a>
-                
-              </div>
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.city.name|default_if_none:'Pas Sesi'}}</p>
+              <p class="card-text">{{product.category.name|default_if_none:'Pas Sesi'}}</p>
+              <a href="/product/{{product.reference}}" class="btn btn-primary">Go To Page</a>
             </div>
+          </div>
+           
           </div>
     
          
