@@ -1,16 +1,17 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{%url 'index' %}"style="font-family:Brush Script MT, Brush Script Std, cursive;"><h1>Opticca</h1></a>
+    <a class="navbar-brand" href="{%url 'index' %}" style="font-family:Brush Script MT, Brush Script Std, cursive;">
+        <h1>Opticca</h1>
+    </a>
     <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler"
-            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <a class="nav-link btn btn-success text-white " href="{%url 'add_product' %}">Déposer une annonce</a>
+        <a class="nav-link btn btn-success text-white " href="{%url 'add_product' %}">Déposer une annonce</a>
         <ul class="navbar-nav ml-auto">
-        {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
             <li class="nav-item ">
                 <a class="nav-link" href="{% url 'dashboard'%}">Dashboard <span class="sr-only">(current)</span></a>
             </li>
@@ -18,25 +19,26 @@
                 <a class="nav-link" href="{% url 'store'%}">Store <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/chat/">Chat <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/chat/">Chat</a>
             </li>
-           
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.get_username }}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{request.user.username}}
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Edit Account</a>
-                    <a class="dropdown-item" href="#">Status</a>
-                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-
-                </div>
-            </li>
-         {% else %}
+                <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
+                </ul>
+              </li>
+            
+            {% else %}
             <a href="{%url 'login' %}">
-                <button class="btn btn-primary p-1 btn-block" type="button">Se connecter<img  class="ml-2"height="35px" width="45px" src="{% static 'img/login.ico' %}"/></button>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url "login" %}">Login</a>
+                </li>
             </a>
-        {% endif %}
+            {% endif %}
         </ul>
     </div>
 </nav>
