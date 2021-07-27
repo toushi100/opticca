@@ -1,10 +1,6 @@
+{% extends 'pages/base.html'%} 
+{% block content %}
 {% load static %}
-{% if user.is_authenticated%}
-{% include 'nav/header.html'%}
-
-{%else%}
-{% include 'pages/header.html'%}
-{% endif%}
 {% for pro in product%}
 <div class="bg">
 <div class="container ">
@@ -150,9 +146,4 @@ $(document).ready(function () {
 */
 </script>
 
-{% if user.is_authenticated%}
-{% include 'nav/footer.html'%}
-
-{%else%}
-{% include 'pages/footer.html'%}
-{% endif%}
+{% endblock content %}

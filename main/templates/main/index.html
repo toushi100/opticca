@@ -1,5 +1,6 @@
 {% extends 'pages/base.html'%}
 {% block content%}
+<div class="container col-md-6 mt-5 pt-5">
 <form action="{% url 'search_list' %}"  method="get">
     <div class="row">
         <label class="radio-inline mr-3 ml-3"><input checked name="optradio" type="radio"> Offre</label>
@@ -45,6 +46,7 @@
         </div>
     </div> 
 </form>
+</div>
 <style>
         #filter li a {
             border: 1px solid #ddd;
