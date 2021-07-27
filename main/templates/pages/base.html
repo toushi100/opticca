@@ -55,11 +55,10 @@
 </head>
 
 <body class="col-12 text-center">
+    <header class="">
+        <div>{% include 'nav/header.html' %}</div>
+    </header>
     <div class="cover-container w-100 h-100 mx-auto mt-0 col-8">
-        <header class="mb-auto">
-            <div>{% include 'nav/header.html' %}</div>
-        </header>
-
         <main class="px-3">{% block content%} {% endblock content%}</main>
     </div>
     {% include 'pages/footer.html' %}

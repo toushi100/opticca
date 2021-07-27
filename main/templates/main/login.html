@@ -1,6 +1,6 @@
-{% if request.user.is_authenticated %} 
-{% include 'nav/header.html'%} {% else %}
-{% include 'pages/header.html'%} {% endif %} {% load static %} 
+{% extends 'pages/base.html'%} 
+{% block content %}
+ {% load static %} 
 {% load crispy_forms_tags %}
 <style> .textinput,.numberinput,.emailinput{
   width: 100%;
@@ -104,3 +104,4 @@
   {% endcomment %} {% comment %} {% include 'pages/footer.html'%} {% endcomment%}
 </div>
 </div>
+{%endblock content%}

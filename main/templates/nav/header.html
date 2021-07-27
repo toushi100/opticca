@@ -8,10 +8,8 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <a class="nav-link btn btn-success text-white " href="{%url 'add_product' %}"> Déposer une annonce
-                    <b style="font-size:22px">+</b> <span class="sr-only">(current)</span></a>
+    <a class="nav-link btn btn-success text-white " href="{%url 'add_product' %}">Déposer une annonce</a>
         <ul class="navbar-nav ml-auto">
-    
         {% if request.user.is_authenticated %}
             <li class="nav-item ">
                 <a class="nav-link" href="{% url 'dashboard'%}">Dashboard <span class="sr-only">(current)</span></a>
@@ -24,7 +22,7 @@
             </li>
            
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ user.get_username }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -38,40 +36,7 @@
             <a href="{%url 'login' %}">
                 <button class="btn btn-primary p-1 btn-block" type="button">Se connecter<img  class="ml-2"height="35px" width="45px" src="{% static 'img/login.ico' %}"/></button>
             </a>
-            {% endif %}
+        {% endif %}
         </ul>
     </div>
 </nav>
-<!--<li class="nav-item dropdown">
-    <button aria-expanded="false" aria-haspopup="true" class="btn btn-block btn-lg btn-secondary dropdown-toggle"
-            data-toggle="dropdown" type="button">
-        <i class="fas fa-shopping-cart"></i>
-    </button>
-    <div aria-labelledby="dropdownMenuButton" id="cart_items" class="dropdown-menu dropdown-menu-right" style="width:600px;padding-left: -300px;">
-    </div>
-    <script>
-        $(document).ready(function(){
-        $.ajax(
-        {
-            url:'{% url "cart_data" %}',
-            dataType: 'json',
-            success: function(data)
-            {
-            for (i in data.cart_items)
-                 {
-                 var  str = "<div class='row ml-3'>  <p class='col-12 col-sm-9'> PRODUCT_  </p>  <p class='col-12 col-sm-3\'>   Qtt: QTT_     </p>     </div>"
-                     str = str.replace("PRODUCT_",data.cart_items[i].name.toString());
-                     str = str.replace("QTT_",data.cart_items[i].quantity.toString());
-                         //  alert (str);
-                          $('#cart_items').append(str);
-                     }
-                     var str = "<div class=\" row ml-3\">  <div class=\" col-6 text-center\">Total : TOTAL_ </div> <div class=\" col-6 text-center\"><a href=\"{% url 'checkout' %} \" class=\"btn  btn-secondary btn-lg \">Checkout</a> </div></div>";
-                      str = str.replace("TOTAL_",data.total.toString());
-                      $('#cart_items').append(str);
-                }
-            }
-            );
-            }
-            );
-        </script>
-</li>-->
