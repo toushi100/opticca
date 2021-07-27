@@ -1,13 +1,8 @@
+{% extends 'pages/base.html'%} 
+{% block content %}
 {% load static %}
-{% if user.is_authenticated%}
-{% include 'nav/header.html'%}
-
-{%else%}
-{% include 'pages/header.html'%}
-{% endif%}
 {% for pro in product%}
-<div class="bg">
-<div class="container ">
+<div class="container text-left">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-8">
             <p>
@@ -83,76 +78,8 @@
 
                 email: {{ pro.owner.email}}
             </div>
-
-
-            <!--
-            <form method="post" action="{% url 'add_cart' reference=pro.reference%}" >
-            {% csrf_token %}
-                <div class="form-group">
-                    
-                            <input type="button" id="sm" value="&lt;">
-                <input type="text"id="qtt"  name="qtt" style="width:50px;" value="1" maxlength="3" >
-                <input type="button" id="bg" value="&gt;">
-                    
-                    
-
-
-                </div>
-                <div class="form-group">
-                    {% if user.is_authenticated%}
-<button type="submit" class="btn btn-dark btn-lg">
-                    Add to Cart
-                </button>
-
-{%else%}
-                    <a href="{%url 'login'%}" class="btn btn-dark btn-lg">
-                        Add to Cart
-                    </a>
-{% endif%}
-
-                </div>
-            </form>-->
         </div>
     </div>
-
-
-</div>
 </div>
 {%endfor%}
-<script>
-    /*
-$(document).ready(function () {
-    $('#sm').on('click',function(e){
-    var a =$('#qtt').val();
-    if (a <= 1)
-    a = 1;
-    else
-    a--;
-    $('#qtt').val(a)
-    });
-    $('#bg').on('click',function(e){
-    var a =$('#qtt').val();
-    if (a>=999)
-    a= 999;
-    else
-    a++;
-    $('#qtt').val(a)
-    });
-
-   $('#qtt').on('keypress', function(e){
-  return e.metaKey || // cmd/ctrl
-    e.which <= 0 || // arrow keys
-    e.which == 8 || // delete key
-    /[0-9]/.test(String.fromCharCode(e.which)); // numbers
-});
-
-})
-*/
-</script>
-
-{% if user.is_authenticated%}
-{% include 'nav/footer.html'%}
-
-{%else%}
-{% include 'pages/footer.html'%}
-{% endif%}
+{% endblock content %}
