@@ -1,5 +1,28 @@
 {% extends 'pages/base.html'%}
 {% block content%}
+<style>
+
+    html,body{
+                height: 100%
+            }
+            #filter li a {
+                border: 1px solid #ddd;
+                margin-top: -1px;
+                /* Prevent double borders */
+                margin-left: -50px;
+                background-color: #f6f6f6;
+                padding: 12px;
+                padding-left: -34px;
+                list-style: none;
+                color: black;
+                display: block;
+                box-sizing: border-box;
+            }
+            li {
+                text-decoration: none;
+                list-style: none;
+            }
+        </style>
 <div class="container col-md-6 mt-5 pt-5">
 <form action="{% url 'search_list' %}"  method="get">
     <div class="row">
@@ -47,25 +70,6 @@
     </div> 
 </form>
 </div>
-<style>
-        #filter li a {
-            border: 1px solid #ddd;
-            margin-top: -1px;
-            /* Prevent double borders */
-            margin-left: -50px;
-            background-color: #f6f6f6;
-            padding: 12px;
-            padding-left: -34px;
-            list-style: none;
-            color: black;
-            display: block;
-            box-sizing: border-box;
-        }
-        li {
-            text-decoration: none;
-            list-style: none;
-        }
-    </style>
     <script>
         var citys;
         var city_data = $.ajax({
