@@ -32,12 +32,14 @@
 
     <div class="row mx-auto float-left">
       <div class="col-12">
+        <a id="redirect"href="#">
         <input
           class="btn btn-primary btn-block mt-5 mb-3"
           type="button"
           id="next"
           value="Suivant"
         />
+        </a>
       </div>
     </div>
   </div>
@@ -404,7 +406,8 @@
           }
           case 5: {
               alert("Uploading");
-              console.log(AN_data)
+              console.log(AN_data);
+              $("#redirect").attr("href", "{% url "index" %}");
               $.ajax({
                   type: "POST",
                   url: "{% url "add_data" %}",
