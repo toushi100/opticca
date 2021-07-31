@@ -1,26 +1,38 @@
 {% extends 'pages/base.html'%} {% load static %} {% block content %}
-
+{% load crispy_forms_tags %}
 <div class="container col-md-6 mt-5 pt-5">
   <div class="row">
     <div class="col-12 text-left">
       <h3>Ajouté une Annonce</h3>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="progress">
-        <div
-          class="progress-bar"
-          id="progressbar"
-          role="progressbar"
-          aria-valuenow="25"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
+      <form action="{% url "add_data" %}" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+        {{ form|crispy }}
+        {{ formi|crispy }}
+        <input
+          class="btn btn-primary btn-block mt-5 mb-3"
+          type="submit"
+          id="next"
+          value="Suivant"
+        />
+      </form>
     </div>
   </div>
 </div>
+
+
+<style>
+
+    html,body{
+                height: 100%
+            }
+              list-style: none;
+            }
+        </style>
+
+
+
+{% comment %} 
 <div class="container-fluid col-md-6 mt-5 " id="main" class="">
   <div class="row">
     <div class="col-12 col-sm-6">
@@ -43,9 +55,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
 
-<script>
+{% comment %} <script>
   $("#progressbar").css("width", "20%");
   var step = 0;
   var AN_data = {}
@@ -460,5 +472,5 @@
       });
 
   });
-</script>
+</script> {% endcomment %}
 {% endblock content%}

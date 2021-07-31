@@ -1,4 +1,4 @@
-import logging
+import logging,base64,io
 
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.core.paginator import Paginator
 from django.core.serializers import serialize
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm,AddProductForm,AddImageForm
 
 from main.models import *
 
@@ -257,9 +257,6 @@ def product_list(request):
     if request.method == "GET":
         data = request.GET.copy()
         text_search = data.get("search")
-        print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++",
-        "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print(text_search)
         page_num = data.get("page")
         if page_num is None:
             page_num = 1
@@ -378,8 +375,13 @@ def product(request, reference):
 
 
 def addproduct(request):
-
-    return render(request, 'main/add_product.html')
+    form = AddProductForm()
+    formi = AddImageForm()
+    context ={
+        'form':form,
+        'formi':formi
+    }
+    return render(request, 'main/add_product.html',context)
 
 
 @login_required()
@@ -390,23 +392,27 @@ def checkout(request):
 
 
 def data_add_product(request):
-    data = {}
+    image=request.FILES
     input = request.POST
     pro = Product()
     pro.category_id = int(input["category"])
-    pro.city_id = int(input["ville"])
-    pro.name = input["title"]
+    pro.city_id = int(input["city"])
+    pro.name = input["name"]
     pro.owner = Person.objects.get(pk=request.user.id)
-    pro.price = float(input["Prix"])
-    pro.TS = bool(int(input['type_TRA']))
+    pro.price = float(input["price"])
+    pro.TS = bool(int(input['TS']))
     pro.save()
-    i = input.keys()
-    for key in i:
-        if key == 'image0':
-            pr_img = Product_Image()
-            pr_img.reference = pro
-            pr_img.image_base64 = input[key]
-            pr_img.save()
-    data["added"] = True
+    image = image['image']
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+    print(image)
+    ext = str(image).split(".")[-1]
+    data = base64.b64encode(image.read()).decode()
+    src = "data:image/{ext};base64,{data}".format(ext=ext, data=data)
+    pr_img = Product_Image()
+    pr_img.reference = pro
+    pr_img.image_base64 = src
+    pr_img.save()
+    print("done")
     
     return redirect('index')
