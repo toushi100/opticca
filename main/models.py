@@ -143,6 +143,8 @@ class Cart(models.Model):
 
 class Category(models.Model):
     name = models.CharField(verbose_name="Category", max_length=50)
+    def __str__(self) :
+        return self.name
 
 
 class Region(models.Model):
@@ -151,6 +153,7 @@ class Region(models.Model):
 class City(models.Model):
     name = models.CharField(verbose_name="City", max_length=50)
     region = models.ForeignKey("Region",on_delete=models.PROTECT,verbose_name="region city",default=None)
-
+    def __str__(self) :
+        return self.name
 
 

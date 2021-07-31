@@ -3,13 +3,15 @@
   <div class="container">
     <div class="row hidden-md-up ">
       {% for product in product_list %}
-      <div class="col-md-4 text-left">
-        <div class="card" style="width: 18rem">
+      <div class="col-md-4 py-3 text-left">
+        <div class="card" style="width: 20rem;">
+        
           {%if product.img == 'None'%}
           <img class="card-img-top" src="{% static 'img/noimage.png' %}" />
           {%else %}
           <img class="card-img-top" src="{{ product.img.image_base64 }}" />
           {% endif %}
+       
           <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">
