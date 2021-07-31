@@ -6,13 +6,71 @@
       <h3>Ajouté une Annonce</h3>
       <form action="{% url "add_data" %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
-      
-        {{ form|crispy }}
-        {{ formi|crispy }}
+      <div id="accordion">
+          <div class="card">
+              <div class="card-header">
+                  <button class="btn" type="button" data-toggle="collapse" data-target="#name">
+                    {{ form.name.label_tag }}
+                  </button>
+              </div>
+              <div class="collapse show" data-parent="#accordion" id="name">
+                  <div class="card-body">
+                      {{ form.name }}
+                  </div>
+              </div>
+          </div>
+          <div class="card">
+              <div class="card-header">
+                <button class="btn" type="button" data-toggle="collapse" data-target="#category">
+                    {{ form.category.label_tag }}
+                  </button>
+              </div>
+              <div class="collapse" data-parent="#accordion" id="category">
+                  <div class="card-body">
+                    {{ form.category }}
+                  </div>
+              </div>
+          </div>
+        <div class="card">
+            <div class="card-header">
+                <button class="btn" type="button" data-toggle="collapse" data-target="#city">
+                    {{ form.city.label_tag }}
+                  </button>
+            </div>
+            <div class="collapse" id="city" data-parent="#accordion">
+                <div class="card-body">
+                    {{ form.city }}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <button class="btn" type="button" data-toggle="collapse" data-target="#price">
+                    {{ form.price.label_tag }}
+                  </button>
+            </div>
+            <div class="collapse" id="price" data-parent="#accordion">
+                <div class="card-body">
+                    {{ form.price }}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <button class="btn" type="button" data-toggle="collapse" data-target="#ts">
+                    {{ form.TS.label_tag }}
+                  </button>
+            </div>
+            <div class="collapse" id="ts" data-parent="#accordion">
+                <div class="card-body">
+                    {{ form.TS }}
+                </div>
+            </div>
+        </div>
+      </div>
         <input
-          class="btn btn-primary btn-block mt-5 mb-3"
+          class="btn btn-primary btn-block mt-2 mb-5"
           type="submit"
-          id="next"
           value="Suivant"
         />
       </form>
@@ -21,6 +79,7 @@
 </div>
 
 
+{% comment %}
 <style>
 
     html,body{
@@ -29,7 +88,7 @@
               list-style: none;
             }
         </style>
-
+{% endcomment %}
 
 
 {% comment %} 
