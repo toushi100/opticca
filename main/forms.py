@@ -27,8 +27,8 @@ class AddProductForm(forms.ModelForm):
     
     category = forms.ModelChoiceField(queryset=Category.objects.all(),empty_label=None,widget=forms.Select(attrs={'class':'form-control'}))
     city = forms.ModelChoiceField(queryset=City.objects.all(),empty_label=None,widget=forms.Select(attrs={'class':'form-control'}))
-    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    price = forms.FloatField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Product Name'}))
+    price = forms.FloatField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Product Price'}))
     TS = forms.ChoiceField(choices=c, widget=forms.Select(attrs={'class':'form-control'}))
 
     class Meta:
