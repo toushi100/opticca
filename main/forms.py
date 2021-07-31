@@ -33,7 +33,7 @@ class AddProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['category','city','name','price','TS']
+        fields = ['name','category','city','price','TS']
 
 class AddImageForm(forms.ModelForm):
     class Meta:
