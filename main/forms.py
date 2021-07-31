@@ -36,6 +36,7 @@ class AddProductForm(forms.ModelForm):
         fields = ['name','category','city','price','TS']
 
 class AddImageForm(forms.ModelForm):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
     class Meta:
         model = Product_Image
         fields = ['image']
