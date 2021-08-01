@@ -9,7 +9,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <a class="nav-link btn btn-success text-white " href="{%url 'add_product' %}">Déposer une annonce</a>
+        <a class="nav-link btn btn-primary text-white " href="{%url 'add_product' %}">Déposer une annonce</a>
         <ul class="navbar-nav ml-auto">
             {% if request.user.is_authenticated %}
             <li class="nav-item ">
@@ -22,22 +22,20 @@
                 <a class="nav-link" href="/chat/">Chat</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     {{request.user.username}}
                 </a>
-                <ul class="dropdown-menu bg-light" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li><a class="dropdown-item" href="#">Edit Account</a></li>
+                  <li><a class="dropdown-item" href="#">Status</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                 </ul>
               </li>
             
             {% else %}
-            <a href="{%url 'login' %}">
-                <li class="nav-item ">
-                    <a class="nav-link" href="{% url "login" %}">Login</a>
-                </li>
-            </a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
             {% endif %}
         </ul>
     </div>
