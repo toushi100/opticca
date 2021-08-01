@@ -25,17 +25,18 @@ class AddProductForm(forms.ModelForm):
        (1,'Request'),
     ]
     
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),empty_label=None,)
-    city = forms.ModelChoiceField(queryset=City.objects.all(),empty_label=None)
-    name = forms.CharField()
-    price = forms.FloatField()
-    TS = forms.ChoiceField(choices=c)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(),empty_label=None,widget=forms.Select(attrs={'class':'form-control'}))
+    city = forms.ModelChoiceField(queryset=City.objects.all(),empty_label=None,widget=forms.Select(attrs={'class':'form-control'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Product Name'}))
+    price = forms.FloatField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Product Price'}))
+    TS = forms.ChoiceField(choices=c, widget=forms.Select(attrs={'class':'form-control'}))
 
     class Meta:
         model = Product
-        fields = ['category','city','name','price','TS']
+        fields = ['name','category','city','price','TS']
 
 class AddImageForm(forms.ModelForm):
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
     class Meta:
         model = Product_Image
         fields = ['image']
