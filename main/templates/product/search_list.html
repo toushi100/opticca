@@ -1,47 +1,32 @@
-{% if user.is_authenticated%}
-{% load static %}
-{% include 'nav/header.html'%}
-
-{%else%}
-{% include 'pages/header.html'%}
-{% endif%}
+{% extends 'pages/base.html'%} {% block content %} {%load static %}
 <div class="py-5 bg">
-    <div class="container">
-      <div class="row hidden-md-up">
-        {% for product in product_list %}
-
-
-
-        <div class="col-md-4">
-          <div class="card" style="width: 18rem;">
-            {%if product.img == 'None'%}
-                        <img class="card-img-top" src="{% static 'img/noimage.png' %}">
-                    {%else %}
-                        <img class="card-img-top" src="{{ product.img.image_base64 }}">
-                    {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
-              <p class="card-text">{{product.city.name|default_if_none:'Pas Sesi'}}</p>
-              <p class="card-text">{{product.category.name|default_if_none:'Pas Sesi'}}</p>
-              <a href="/product/{{product.reference}}" class="btn btn-primary">Go To Page</a>
-            </div>
+  <div class="container">
+    <div class="row hidden-md-up ">
+      {% for product in product_list %}
+      <div class="col-md-4 py-3 text-left">
+        <div class="card" style="width: 20rem;">
+        
+          {%if product.img == 'None'%}
+          <img class="card-img-top" src="{% static 'img/noimage.png' %}" />
+          {%else %}
+          <img class="card-img-top" src="{{ product.img.image_base64 }}" />
+          {% endif %}
+       
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">
+              {{product.city.name|default_if_none:'Pas Sesi'}}
+            </p>
+            <p class="card-text">
+              {{product.category.name|default_if_none:'Pas Sesi'}}
+            </p>
+            <a href="/product/{{product.reference}}" class="btn btn-primary "
+              >Go To Page</a>
           </div>
-           
-          </div>
-    
-         
-             
-        {%endfor%}
+        </div>
       </div>
+      {%endfor%}
     </div>
+  </div>
 </div>
-
-   
-
-{% if user.is_authenticated%}
-{% include 'nav/footer.html'%}
-
-{%else%}
-{% include 'pages/footer.html'%}
-{% endif%}
-
+{% endblock content %}

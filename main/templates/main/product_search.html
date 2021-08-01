@@ -1,5 +1,5 @@
-{% if request.user.is_authenticated %} {% include 'nav/header.html'%} {% else %}
-{% include 'pages/header.html'%} {% endif %}
+{% extends 'pages/base.html'%} 
+{% block content %}
 <div class="container">
   {% for product in product_list %}
   <div class="row">
@@ -22,4 +22,4 @@
   </div>
 </div>
 
-{% include 'pages/footer.html'%}
+{% endblock content%}

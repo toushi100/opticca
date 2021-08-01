@@ -1,10 +1,14 @@
-{% if request.user.is_authenticated %} 
-{% include 'nav/header.html'%} {% else %}
-{% include 'pages/header.html'%} {% endif %} {% load static %} 
+{% extends 'pages/base.html'%} 
+{% block content %}
+ {% load static %} 
 {% load crispy_forms_tags %}
 <style> .textinput,.numberinput,.emailinput{
   width: 100%;
-}</style>
+}
+html,body{
+                height: 100%
+            }
+</style>
 <div class="bg">
 <div class="container ">
   <div class="row">
@@ -20,13 +24,11 @@
               <button
                 class="btn btn-primary btn-block"
                 onclick="checkmail()"
-                type="submit"
-              >
+                type="submit">
                 Se Connecter
               </button>
               <small class="text-muted text-center ml-2">
-                <a class="ml-2" href="#">Mot de passe oublié</a></small
-              >
+                <a class="ml-2" href="#">Mot de passe oublié</a></small>
             </div>
           </form>
           <div class="border-top pt-3">
@@ -34,8 +36,7 @@
               >Envie de nous rejoindre ?
               <a class="ml-2" href="{% url 'signup' %}"
                 >Créer un compte</a
-              ></small
-            >
+              ></small>
           </div>
         </div>
       </div>
@@ -104,3 +105,4 @@
   {% endcomment %} {% comment %} {% include 'pages/footer.html'%} {% endcomment%}
 </div>
 </div>
+{%endblock content%}

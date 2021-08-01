@@ -1,14 +1,15 @@
-{% include 'login/header.html'%} {% load static %} {% load crispy_forms_tags %}
-
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-  <style>
-    #hint_id_username, #hint_id_password1 ,ul,.help-block{
-        display: none;
-    }
+{% extends 'pages/base.html'%} 
+{% block content %} 
+{% load static %} 
+{% load crispy_forms_tags %}
+<style>
+    
     .textinput,.numberinput,.emailinput{
       width: 100%;
     }
+    html,body{
+                height: 100%
+            }
     
 </style>
 <div class="bg">
@@ -98,4 +99,4 @@
     },
   });
 </script>
-{% include 'pages/footer.html'%}
+{% endblock content%}
