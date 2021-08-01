@@ -376,17 +376,10 @@ def product(request, reference):
 
 def addproduct(request):
     form = AddProductForm()
-<<<<<<< HEAD
-    formi = AddImageForm()
-    context ={
-        'form':form,
-        'formi':formi
-=======
     image_form = AddImageForm()
     context ={
         'form':form,
         'image_form':image_form
->>>>>>> ec1d4f064973aa57d4c32d8d10b51934fddf8fb9
     }
     return render(request, 'main/add_product.html',context)
 
